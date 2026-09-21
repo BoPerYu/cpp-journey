@@ -1,0 +1,23 @@
+# 构建产物（CMake 生成）
+build/
+out/
+
+# 构建产物（Visual Studio 生成）
+x64/
+Debug/
+Release/
+
+# Visual Studio 的隐藏目录
+.vs/
+
+# 编译中间文件
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.idb
+*.log
+*.tlog
+
+# 用户自己的设置，不该共享
+*.vcxproj.user
