@@ -37,7 +37,7 @@ int main() {
 	else {
 		std::cout << "优秀";
 	}
-	int i;
+
 	int m = 0;
 	for (int i = 1;i <=100;i++) {
 		m += i;
