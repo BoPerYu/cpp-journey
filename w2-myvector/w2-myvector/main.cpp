@@ -106,7 +106,6 @@ int main() {
     for (int i = 0; i < 3; ++i) a.push_back(i * 10);
     MyVector b = a;      // 拷贝构造
     b[0] = 999;          // 期望 a[0] 仍是 0
-
     MyVector c;
     c.push_back(5);
     c = a;               // 拷贝赋值
