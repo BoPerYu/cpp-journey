@@ -27,6 +27,8 @@ cmake --build build --config Debug                      # 之后每次都跑这�
 | `upcast` | `labs\upcast.cpp` | 指针层面的多态：基类指针和派生类指针指向同一块内存 |
 | `hiding` | `labs\hiding.cpp` | 名字隐藏：派生类同名函数藏掉基类所有重载 |
 | `abstract` | `labs\abstract.cpp` | 纯虚函数与抽象类 + 通过基类引用调用 |
+| `range_for` | `labs\range-for.cpp` | range-for 里那个变量是拷贝还是引用 |
+| `flush_lab` | `labs\flush-lab.cpp` | flush 是干什么的（abort 前不 flush 会丢输出） |
 | `my_shapes` | `my\shapes.cpp` | 本周主程序（Shape / Circle / Rect），函数体自己写 |
 
 `labs\broken\` 里两个文件**故意编译不过 / 故意不报错**，不参与构建，要用命令行单独编（文件头有命令）。

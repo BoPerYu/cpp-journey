@@ -51,6 +51,8 @@ endfunction()
 #   8 upcast        指针层面的多态：基类指针和派生类指针指向同一块内存
 #   9 hiding        名字隐藏：派生类同名函数会藏掉基类的所有重载
 #  10 abstract      纯虚函数与抽象类 + 通过基类引用调用（多态）
+#  11 range_for     range-for 里那个变量到底是怎么来的（拷贝 vs 引用）
+#  12 flush_lab      flush 是干什么的（abort 之前不 flush 会丢输出）
 # ------------------------------------------------------------
 add_executable(why_inherit labs/why-inherit.cpp)
 add_executable(minimal     labs/minimal.cpp)
@@ -62,6 +64,8 @@ add_executable(ctor_virtual  labs/ctor-virtual.cpp)
 add_executable(upcast         labs/upcast.cpp)
 add_executable(hiding         labs/hiding.cpp)
 add_executable(abstract       labs/abstract.cpp)
+add_executable(range_for      labs/range-for.cpp)
+add_executable(flush_lab      labs/flush-lab.cpp)
 
 w3_enable_asan(vdtor_bad)
 w3_enable_asan(vdtor_good)
