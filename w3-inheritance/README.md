@@ -29,6 +29,7 @@ cmake --build build --config Debug                      # 之后每次都跑这�
 | `abstract` | `labs\abstract.cpp` | 纯虚函数与抽象类 + 通过基类引用调用 |
 | `range_for` | `labs\range-for.cpp` | range-for 里那个变量是拷贝还是引用 |
 | `flush_lab` | `labs\flush-lab.cpp` | flush 是干什么的（abort 前不 flush 会丢输出） |
+| `vdtor_size` | `labs\vdtor-same-size.cpp` | 派生类和基类一样大时，非虚析构照样漏调派生类析构 |
 | `my_shapes` | `my\shapes.cpp` | 本周主程序（Shape / Circle / Rect），函数体自己写 |
 
 `labs\broken\` 里两个文件**故意编译不过 / 故意不报错**，不参与构建，要用命令行单独编（文件头有命令）。

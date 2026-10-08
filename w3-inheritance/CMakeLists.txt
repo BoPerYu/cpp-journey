@@ -53,6 +53,7 @@ endfunction()
 #  10 abstract      纯虚函数与抽象类 + 通过基类引用调用（多态）
 #  11 range_for     range-for 里那个变量到底是怎么来的（拷贝 vs 引用）
 #  12 flush_lab      flush 是干什么的（abort 之前不 flush 会丢输出）
+#  13 vdtor_size     派生类和基类一样大时，非虚析构还错不错（不靠 ASan 报告）
 # ------------------------------------------------------------
 add_executable(why_inherit labs/why-inherit.cpp)
 add_executable(minimal     labs/minimal.cpp)
@@ -66,6 +67,7 @@ add_executable(hiding         labs/hiding.cpp)
 add_executable(abstract       labs/abstract.cpp)
 add_executable(range_for      labs/range-for.cpp)
 add_executable(flush_lab      labs/flush-lab.cpp)
+add_executable(vdtor_size     labs/vdtor-same-size.cpp)
 
 w3_enable_asan(vdtor_bad)
 w3_enable_asan(vdtor_good)
