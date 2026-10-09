@@ -44,6 +44,7 @@ public:
         data_ = nullptr;
         size_ = other.size_;
         if (size_ == 0) {
+            capacity_ = 0;
             return;
         }
         capacity_ = other.capacity_;
@@ -59,6 +60,8 @@ public:
         delete[] data_;
         data_ = nullptr;
         if (other.size_ == 0) {
+            size_ = 0;
+            capacity_ = 0;
             return *this;
         }
         data_ = new int[other.capacity_];
