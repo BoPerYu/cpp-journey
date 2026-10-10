@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="w3-selftest2/w3-selftest2.vcxproj" Id="8e42b6d1-7a35-4c98-b2f1-3d5c90e64a27" />
+</Solution>
