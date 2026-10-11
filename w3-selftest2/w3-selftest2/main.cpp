@@ -31,8 +31,8 @@ private:
 public:
     Vector():data_(nullptr),size_(0),capacity_(0){}
     ~Vector() { delete[] data_;std::cout << "[析构]" << std::endl; }
-    const std::size_t size() { return size_; }
-    const std::size_t capacity() { return capacity_; }
+    std::size_t size() const { return size_; }
+    std::size_t capacity() const { return capacity_; }
     void read() {
         for (std::size_t i = 0;i < size_;i++) {
             std::cout << data_[i] << "\n";
@@ -77,7 +77,7 @@ public:
             data_[size_ - 1] = value;
         }
     }
-    int pop() {
+    int pop() {// 调用者保证栈非空
         size_ -= 1;
         return data_[size_];
     }

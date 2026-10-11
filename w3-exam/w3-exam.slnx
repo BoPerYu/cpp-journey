@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="w3-exam/w3-exam.vcxproj" Id="2f5c8a17-6b93-4d2e-8f47-1a3e9b5c7d62" />
+</Solution>
