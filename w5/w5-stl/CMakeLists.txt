@@ -39,3 +39,8 @@ if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/my/word_count.cpp")
     add_executable(word_count my/word_count.cpp)
     w5_enable_asan(word_count)
 endif ()
+
+if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/my/unique_words.cpp")
+    add_executable(unique_words my/unique_words.cpp)
+    w5_enable_asan(unique_words)
+endif ()

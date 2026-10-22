@@ -25,7 +25,10 @@ FreqMap count_words(std::istream& in) {
     // TODO 1：从 in 逐个读入 std::string token，统计次数。
     //         提示：可以用 while (in >> word) { ... }。
     //         想一想：这里用 ++freq[word] 和用 find 再插入，差别是什么？
-
+    std::string word;
+    while (in >> word) {
+        ++freq[word];
+    }
     (void)in;
     return freq;
 }
@@ -35,12 +38,26 @@ Ranked rank_words(const FreqMap& freq) {
     // TODO 2：把 freq 的 {word, count} 拷进 ranked，
     //         然后按“频次降序、同频单词升序”排序。
     //         提示：std::sort + lambda；比较器必须满足严格弱序。
+    for (const std::pair<std::string,int>& x : freq) {
+        ranked.push_back(x);
+    }
+    std::sort(ranked.begin(), ranked.end(),
+        [](const auto& a, const auto& b) {
+            if (a.second == b.second) {
+                return a.first < b.first;
+            }
+            return a.second > b.second;
+        });
     (void)freq;
     return ranked;
 }
 
 void print_top(std::ostream& out, const Ranked& ranked, std::size_t k) {
     // TODO 3：打印前 min(k, ranked.size()) 行，每行 "word count"。
+    std::size_t t = std::min<std::size_t>(k, ranked.size());
+    for (int i = 0;i < t; i++) {
+        out << ranked[i].first << " " << ranked[i].second << "\n";
+    }
     (void)out;
     (void)ranked;
     (void)k;

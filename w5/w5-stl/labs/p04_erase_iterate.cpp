@@ -19,8 +19,10 @@ int main() {
     }
     // TODO 2：用 find("c") 拿到迭代器，调用 m.erase(it)，打印返回值指向的 key。
     auto it = m.find("c");
-    auto a=m.erase(it);
-    std::cout << a->first << "->" << a->second << "\n";
+    auto next=m.erase(it);
+    if (next != m.end()) {
+        std::cout << next->first << "->" << next->second << "\n";
+    }
     // TODO 3：写一个循环，删除所有 value 为偶数的元素；
     //         必须使用 it = m.erase(it) 的写法。
     for (auto i = m.begin();i != m.end();) {
