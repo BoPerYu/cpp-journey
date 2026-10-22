@@ -24,7 +24,7 @@ int main() {
     auto [first, second] = std::equal_range(v.begin(), v.end(), 2);
     int m = std::distance(v.begin(), first);
     int n = std::distance(v.begin(), second);
-    std::cout << "first = " << m << "second = " << n << "\n";
+    std::cout << "first = " << m << "  second = " << n << "\n";
     // TODO 3：对 target = 3 和 target = 6 分别查 lower_bound，
     //         先判断是否等于 end()，再打印。
     auto x = std::lower_bound(v.begin(), v.end(), 3);
