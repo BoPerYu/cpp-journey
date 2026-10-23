@@ -16,14 +16,14 @@ int main() {
     // TODO 1：打印 lower_bound(2) 和 upper_bound(2) 的下标。
     //         用 std::distance(v.begin(), it) 得到下标。
     auto lower = std::lower_bound(v.begin(), v.end(), 2);
-    int a = std::distance(v.begin(), lower);
+    auto a = std::distance(v.begin(), lower);
     auto upper = std::upper_bound(v.begin(), v.end(), 2);
-    int b = std::distance(v.begin(), upper);
+    auto b = std::distance(v.begin(), upper);
     std::cout << "下标v.lower_bound(2) = " << a << "下标v.upper_bound(2) = " << b << "\n";
     // TODO 2：打印 equal_range(2) 两个边界对应的下标。
     auto [first, second] = std::equal_range(v.begin(), v.end(), 2);
-    int m = std::distance(v.begin(), first);
-    int n = std::distance(v.begin(), second);
+    auto m = std::distance(v.begin(), first);
+    auto n = std::distance(v.begin(), second);
     std::cout << "first = " << m << "  second = " << n << "\n";
     // TODO 3：对 target = 3 和 target = 6 分别查 lower_bound，
     //         先判断是否等于 end()，再打印。

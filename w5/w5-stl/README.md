@@ -39,6 +39,9 @@ cmake --build build --config Debug --parallel
 | `p10_sort_wordcount` | 探针 | Top-K 的 sort 比较器与严格弱序 |
 | `p11_lower_bound` | 探针 | `lower_bound` / `upper_bound` / `equal_range` |
 | `p12_accumulate_countif` | 探针 | `accumulate` 初始值类型与 `count_if` |
+| `ref04_template_api` | 参考程序 | 函数模板、泛型排序、`const auto&` |
+| `p13_template_max` | 探针 | 写一个 `max_value<T>` |
+| `p14_template_sort` | 探针 | 写一个 `sort_values<T, Compare>` |
 | `word_count` | 今日可复用练习 | 输入 token，输出按频次排序的 Top-K |
 | `unique_words` | 今日可复用练习 | 输入 token，输出去重后的字典序词表 |
 
