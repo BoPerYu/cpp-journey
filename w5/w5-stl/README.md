@@ -42,8 +42,10 @@ cmake --build build --config Debug --parallel
 | `ref04_template_api` | 参考程序 | 函数模板、泛型排序、`const auto&` |
 | `p13_template_max` | 探针 | 写一个 `max_value<T>` |
 | `p14_template_sort` | 探针 | 写一个 `sort_values<T, Compare>` |
+| `ref05_class_template` | 参考程序 | `Box<T>`、`Stack<T>` 和类模板成员 |
 | `word_count` | 今日可复用练习 | 输入 token，输出按频次排序的 Top-K |
 | `unique_words` | 今日可复用练习 | 输入 token，输出去重后的字典序词表 |
+| `generic_stack` | 今日可复用练习 | 用类模板实现类型安全的 `Stack<T>` |
 
 ## 约定
 

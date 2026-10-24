@@ -44,3 +44,8 @@ if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/my/unique_words.cpp")
     add_executable(unique_words my/unique_words.cpp)
     w5_enable_asan(unique_words)
 endif ()
+
+if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/my/generic_stack.cpp")
+    add_executable(generic_stack my/generic_stack.cpp)
+    w5_enable_asan(generic_stack)
+endif ()
