@@ -62,5 +62,10 @@ add_executable(word_count_tests tests/word_count_test.cpp)
 target_link_libraries(word_count_tests PRIVATE word_count_lib)
 w6_configure_target(word_count_tests)
 
+add_executable(w6d1_transfer_drill drills/w6d1_transfer.cpp)
+target_link_libraries(w6d1_transfer_drill PRIVATE word_count_lib)
+w6_configure_target(w6d1_transfer_drill)
+
 enable_testing()
 add_test(NAME word_count_selftest COMMAND word_count_tests)
+add_test(NAME w6d1_transfer_drill COMMAND w6d1_transfer_drill)
