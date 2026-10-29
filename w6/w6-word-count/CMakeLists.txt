@@ -54,7 +54,11 @@ target_include_directories(
 target_compile_features(word_count_lib PUBLIC cxx_std_17)
 w6_configure_target(word_count_lib)
 
-add_executable(word_count app/main.cpp)
+add_executable(
+    word_count
+    app/main.cpp
+    app/option.cpp
+)
 target_link_libraries(word_count PRIVATE word_count_lib)
 w6_configure_target(word_count)
 
@@ -66,6 +70,19 @@ add_executable(w6d1_transfer_drill drills/w6d1_transfer.cpp)
 target_link_libraries(w6d1_transfer_drill PRIVATE word_count_lib)
 w6_configure_target(w6d1_transfer_drill)
 
+add_executable(w6d3_core_features drills/w6d3_core_features.cpp)
+w6_configure_target(w6d3_core_features)
+
+add_executable(
+    option_parser_tests
+    tests/option_test.cpp
+    app/option.cpp
+)
+target_include_directories(option_parser_tests PRIVATE app)
+w6_configure_target(option_parser_tests)
+
 enable_testing()
 add_test(NAME word_count_selftest COMMAND word_count_tests)
 add_test(NAME w6d1_transfer_drill COMMAND w6d1_transfer_drill)
+add_test(NAME w6d3_core_features COMMAND w6d3_core_features)
+add_test(NAME option_parser_tests COMMAND option_parser_tests)

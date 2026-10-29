@@ -72,8 +72,11 @@ std::pair<std::string, std::string> equal_range_text(
     (void)words;
     (void)target;
     auto [left, right] = words.equal_range(target);
-    if (left == words.end() or right ==words.end()) {
+    if (left == words.end()) {
         return {};
+    }
+    if (right == words.end()) {
+        return std::pair < std::string, std::string>(*left, " ");
     }
     return std::pair<std::string,std::string>(*left,*right);
 }
