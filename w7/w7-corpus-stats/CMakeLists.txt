@@ -6,6 +6,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+option(
+    CORPUS_STATS_ENABLE_ASAN
+    "Enable AddressSanitizer in Debug builds"
+    ON
+)
+
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/w7-corpus-stats")
 
 add_library(corpus_stats_lib
@@ -32,19 +38,6 @@ target_link_libraries(corpus_stats_tests
     PRIVATE corpus_stats_lib
 )
 
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    message(STATUS "Debug 模式：开启 AddressSanitizer (ASan)")
-    if(MSVC)
-        # Windows MSVC 编译器开启 ASan
-        add_compile_options(/fsanitize=address)
-        add_link_options(/fsanitize=address)
-    else()
-        # Linux/Mac GCC/Clang 编译器开启 ASan
-        add_compile_options(-fsanitize=address)
-        add_link_options(-fsanitize=address)
-    endif()
-endif()
-
 if(MSVC)
     foreach(target
             corpus_stats_lib
@@ -63,6 +56,59 @@ else()
             PRIVATE -Wall -Wextra -Wpedantic
         )
     endforeach()
+endif()
+
+if(CORPUS_STATS_ENABLE_ASAN)
+    foreach(target
+            corpus_stats_lib
+            corpus_stats
+            corpus_stats_tests)
+        if(MSVC)
+            target_compile_options(${target}
+                PRIVATE $<$<CONFIG:Debug>:/fsanitize=address>
+            )
+        else()
+            target_compile_options(${target}
+                PRIVATE $<$<CONFIG:Debug>:-fsanitize=address>
+            )
+        endif()
+    endforeach()
+
+    foreach(target
+            corpus_stats
+            corpus_stats_tests)
+        if(MSVC)
+            target_link_options(${target}
+                PRIVATE $<$<CONFIG:Debug>:/INCREMENTAL:NO>
+            )
+        else()
+            target_link_options(${target}
+                PRIVATE $<$<CONFIG:Debug>:-fsanitize=address>
+            )
+        endif()
+    endforeach()
+
+    if(MSVC)
+        get_filename_component(
+            CORPUS_STATS_MSVC_BIN_DIR
+            "${CMAKE_CXX_COMPILER}"
+            DIRECTORY
+        )
+        foreach(target
+                corpus_stats
+                corpus_stats_tests)
+            add_custom_command(
+                TARGET ${target}
+                POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    "${CORPUS_STATS_MSVC_BIN_DIR}/clang_rt.asan_dbg_dynamic-x86_64.dll"
+                    "${CORPUS_STATS_MSVC_BIN_DIR}/clang_rt.asan_dynamic-x86_64.dll"
+                    "$<TARGET_FILE_DIR:${target}>"
+                COMMENT "Copy AddressSanitizer runtime DLL"
+                VERBATIM
+            )
+        endforeach()
+    endif()
 endif()
 
 enable_testing()
