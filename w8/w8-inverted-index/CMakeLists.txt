@@ -13,7 +13,9 @@ option(
 )
 
 add_library(inverted_index_lib
+    src/bm25.cpp
     src/inverted_index.cpp
+    src/tfidf.cpp
 )
 
 target_include_directories(inverted_index_lib
@@ -37,11 +39,65 @@ target_link_libraries(inverted_index_tests
     PRIVATE inverted_index_lib
 )
 
+add_executable(tfidf_search
+    src/tfidf_main.cpp
+)
+
+target_link_libraries(tfidf_search
+    PRIVATE inverted_index_lib
+)
+
+add_executable(tfidf_batch
+    src/tfidf_batch_main.cpp
+)
+
+target_link_libraries(tfidf_batch
+    PRIVATE inverted_index_lib
+)
+
+add_executable(tfidf_tests
+    tests/tfidf_test.cpp
+)
+
+target_link_libraries(tfidf_tests
+    PRIVATE inverted_index_lib
+)
+
+add_executable(bm25_search
+    src/bm25_main.cpp
+)
+
+target_link_libraries(bm25_search
+    PRIVATE inverted_index_lib
+)
+
+add_executable(bm25_batch
+    src/bm25_batch_main.cpp
+)
+
+target_link_libraries(bm25_batch
+    PRIVATE inverted_index_lib
+)
+
+add_executable(bm25_tests
+    tests/bm25_test.cpp
+)
+
+target_link_libraries(bm25_tests
+    PRIVATE inverted_index_lib
+)
+
 if(MSVC)
     foreach(target
             inverted_index_lib
             inverted_index
-            inverted_index_tests)
+            inverted_index_tests
+            tfidf_search
+            tfidf_batch
+            tfidf_tests
+            bm25_search
+            bm25_batch
+            bm25_tests)
         target_compile_options(${target}
             PRIVATE /W4 /permissive- /utf-8
         )
@@ -50,7 +106,13 @@ else()
     foreach(target
             inverted_index_lib
             inverted_index
-            inverted_index_tests)
+            inverted_index_tests
+            tfidf_search
+            tfidf_batch
+            tfidf_tests
+            bm25_search
+            bm25_batch
+            bm25_tests)
         target_compile_options(${target}
             PRIVATE -Wall -Wextra -Wpedantic
         )
@@ -61,7 +123,13 @@ if(INVERTED_INDEX_ENABLE_ASAN)
     foreach(target
             inverted_index_lib
             inverted_index
-            inverted_index_tests)
+            inverted_index_tests
+            tfidf_search
+            tfidf_batch
+            tfidf_tests
+            bm25_search
+            bm25_batch
+            bm25_tests)
         if(MSVC)
             target_compile_options(${target}
                 PRIVATE $<$<CONFIG:Debug>:/fsanitize=address>
@@ -75,7 +143,13 @@ if(INVERTED_INDEX_ENABLE_ASAN)
 
     foreach(target
             inverted_index
-            inverted_index_tests)
+            inverted_index_tests
+            tfidf_search
+            tfidf_batch
+            tfidf_tests
+            bm25_search
+            bm25_batch
+            bm25_tests)
         if(MSVC)
             target_link_options(${target}
                 PRIVATE $<$<CONFIG:Debug>:/INCREMENTAL:NO>
@@ -95,7 +169,13 @@ if(INVERTED_INDEX_ENABLE_ASAN)
         )
         foreach(target
                 inverted_index
-                inverted_index_tests)
+                inverted_index_tests
+                tfidf_search
+                tfidf_batch
+                tfidf_tests
+                bm25_search
+                bm25_batch
+                bm25_tests)
             add_custom_command(
                 TARGET ${target}
                 POST_BUILD
@@ -115,4 +195,14 @@ enable_testing()
 add_test(
     NAME inverted_index_tests
     COMMAND inverted_index_tests
+)
+
+add_test(
+    NAME tfidf_tests
+    COMMAND tfidf_tests
+)
+
+add_test(
+    NAME bm25_tests
+    COMMAND bm25_tests
 )
